@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate, Link } from "react-router-dom";
 import veiculoService from "../service/VeiculoService";
+import marcaService from "../service/MarcaService";
 
 export default function cadastroMarca() {
 
@@ -9,13 +10,13 @@ export default function cadastroMarca() {
     const navigate = useNavigate();
 
     useEffect(()=> {
-        veiculoService.listarMarcas()
+        marcaService.listarMarcas()
             .then((marcas) => setListaMarcas(marcas))
     }, [])
 
     const cadastraMarca = (evento) => {
         evento.preventDefault();
-        veiculoService.inserirMarca({
+        marcaService.inserirMarca({
             nome: nome
         })
             .then((marca) => {
@@ -28,7 +29,7 @@ export default function cadastroMarca() {
         <form onSubmit={cadastraMarca}>
             <h1>Cadastrar Marca</h1>
             <p>Se a marca estiver cadastrada, selecione-a e clique em PRÓXIMO:</p>
-            <label htmlFor="marca" onChange={(evento) => setMarcaId(evento.target.value)}>Marca:</label>
+            <label htmlFor="marca">Marca:</label>
             <select id="marca" name="select">
                 <option value="">Selecione...</option>
                 {listaMarcas.map((marca) => 

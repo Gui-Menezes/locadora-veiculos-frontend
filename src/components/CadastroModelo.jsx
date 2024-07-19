@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import { useNavigate, Link } from "react-router-dom";
 import veiculoService from "../service/VeiculoService";
+import modeloService from "../service/ModeloService";
+import marcaService from "../service/MarcaService";
 
 
 
@@ -13,25 +15,24 @@ export default function cadastroModelo() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        veiculoService.listarModelos()
+        modeloService.listarModelos()
             .then((modelos) => setListaModelos(modelos))
     }, [])
 
     useEffect(()=> {
-        veiculoService.listarMarcas()
+        marcaService.listarMarcas()
             .then((marcas) => setListaMarcas(marcas))
     }, [])
 
     const cadastraModelo = (evento) => {
         evento.preventDefault();
-        veiculoService.inserirModelo({
+        modeloService.inserirModelo({
             nome: nome,
             marca: {
                 id: marcaId
             }
         })
             .then((modelo) => {
-                console.log("MODELO: ", modelo);
                 navigate('/cadastro');
             })
     }
@@ -40,7 +41,7 @@ export default function cadastroModelo() {
         <form onSubmit={cadastraModelo}>
             <h1>Cadastrar Modelo</h1>
             <p>Se o modelo estiver cadastrado, selecione-o e clique em PRÓXIMO:</p>
-            <label htmlFor="modelo" onChange={(evento) => setModeloId(evento.target.value)}>Modelo:</label>
+            <label htmlFor="modelo">Modelo:</label>
             <select id="modelo" name="select">
                 <option value="">Selecione...</option>
                 {listaModelos.map((modelo) => 
@@ -50,12 +51,12 @@ export default function cadastroModelo() {
             <br />
             <Link to='/cadastro'>PRÓXIMO</Link>
             <br />
-            <p>Se o modelo não estiver cadastrado, cadastre abaixo:</p>
+            <p>Se o modelo não estiver cadastrado, cadastre-o abaixo:</p>
             <label htmlFor="nome">Nome:</label>
             <input type="text" name="nome" id="nome" value={nome} onChange={(evento) => setNome(evento.target.value)} />
             <br />
-            <label htmlFor="marca" onChange={(evento) => setMarcaId(evento.target.value)}>Marca:</label>
-            <select id="marca" name="select">
+            <label htmlFor="marca">Marca:</label>
+            <select id="marca" name="select" onChange={(evento) => setMarcaId(evento.target.value)}>
                 <option value="">Selecione...</option>
                 {listaMarcas.map((marca) => 
                     <option key={marca.id} value={marca.id}>{marca.nome}</option>

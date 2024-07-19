@@ -1,10 +1,15 @@
+import { useNavigate } from "react-router-dom";
 
 
 export default function VeiculoCard({veiculo}) {
-    // const navigate = useNavigate();
-    // const editarProduto = () => {
-    //     navigate(`/edit/${produto.id}`);
-    // }
+    const navigate = useNavigate();
+
+    const locarVeiculo = () => {
+        navigate('/cadastro');
+    }
+    const editarProduto = () => {
+        navigate(`/edit/${produto.id}`);
+    }
     return (
         <div className="w3-col l4 m6 s12 w3-container w3-padding-16">
             <div className="w3-card">
@@ -15,6 +20,8 @@ export default function VeiculoCard({veiculo}) {
                     <h5>{veiculo.marca}</h5>
                     <h5>{veiculo.ano_fabricacao}</h5>
                     <h3 className="w3-black">{veiculo.preco.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</h3>
+                    {/* CRIAR PÁGINA PARA LOCAÇÃO DO VEÍCULO */}
+                    <button onClick={locarVeiculo}>LOCAR</button>
                 </div>
             </div>
         </div>

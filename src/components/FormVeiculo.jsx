@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import veiculoService from "../service/VeiculoService";
+import marcaService from "../service/MarcaService";
+import modeloService from "../service/ModeloService";
+import { useNavigate } from "react-router-dom";
 
 
 export default function FormVeiculo() {
@@ -12,14 +15,16 @@ export default function FormVeiculo() {
     const [listaModelos, setListaModelos] = useState([]);
     const [listaMarcas, setListaMarcas] = useState([]);
     const [modeloId, setModeloId] = useState('');
+    const navigate = useNavigate();
+
 
     useEffect(()=> {
-        veiculoService.listarMarcas()
+        marcaService.listarMarcas()
             .then((marcas) => setListaMarcas(marcas))
     }, [])
 
     useEffect(()=> {
-        veiculoService.listarModelos()
+        modeloService.listarModelos()
             .then((modelos) => setListaModelos(modelos))
     }, [])
 
@@ -34,30 +39,14 @@ export default function FormVeiculo() {
             }
         })
             .then((veiculo) => {
-                console.log("VEICULO: ", veiculo);
+                // console.log("VEICULO: ", veiculo);
+                navigate('/');
             })
-        // veiculoService.inserirModelo({
-        //     nome: nomeModelo
-        // })
-        // .then((modelo) => {
-        //     console.log("MODELO: ", modelo);
-        // })
-        // veiculoService.inserirMarca({
-        //     nome: nomeMarca
-        // })
-        //     .then((marca) => {
-        //         console.log("MARCA: ", marca);
-        //     })
-        setAnoFabricacao(0);
-        setChassi(0);
-        setPreco(0);
-        // setNomeModelo("");
-        // setNomeMarca("");
     }
 
     return (
         <form onSubmit={cadastrarVeiculo}>
-        <br />
+        <h1>Cadastrar Veículo</h1>
         <label htmlFor="ano_fabricacao">Ano de Fabricação:</label>
         <input type="number" name="ano_fabricacao" id="ano_fabricacao" value={anoFabricacao} onChange={(evento) => setAnoFabricacao(evento.target.value)}/>
         <br />

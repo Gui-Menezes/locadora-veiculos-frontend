@@ -15,12 +15,10 @@ function App() {
       <div className="w3-bar w3-black">
         <Link to='/' className="w3-bar-item w3-button">Home</Link>
         <Link to='/cadastro-marca' className="w3-bar-item w3-button">Cadastrar Veículo</Link>
-        <a href="#" className="w3-bar-item w3-button">Link 2</a>
+        <Link to='/cadastro-cliente' className="w3-bar-item w3-button">Cadastrar Cliente</Link>
         <a href="#" className="w3-bar-item w3-button">Link 3</a>
       </div>
-      {/* <ListCardVeiculos></ListCardVeiculos> */}
         <Outlet></Outlet>
-      {/* <FormVeiculo></FormVeiculo> */}
     </>
   )
 }
