@@ -5,6 +5,8 @@ import ListCardVeiculos from "./components/ListCardVeiculos";
 import CadastroMarca from "./components/CadastroMarca";
 import CadastroModelo from "./components/CadastroModelo";
 import CadastroCliente from "./components/CadastroCliente";
+import Login from "./components/Login";
+import MinhasLocacoes from "./components/MinhasLocacoes";
 
 export default function Router() {
     return (
@@ -15,6 +17,8 @@ export default function Router() {
                 <Route path="/cadastro-modelo" element={<CadastroModelo />} />
                 <Route path="/cadastro" element={<FormVeiculo />} />
                 <Route path="/cadastro-cliente" element={<CadastroCliente />} />
+                <Route path="/minhas-locacoes" element={<MinhasLocacoes />} />
+                <Route path="/login" element={<Login />} />
             </Route>
         </Routes>
     )

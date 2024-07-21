@@ -23,8 +23,21 @@ async function inserirCliente(cliente) {
     return response.data;
 }
 
+async function verificarUsuario(nome, cpf) {
+    const response = await axios.get(BASE_URL_CLIENTE, {
+        params: {
+            filters: {
+                nome,
+                cpf
+            }
+        }
+    });
+    return response.data.data;
+}
+
 
 export default {
     listarClientes,
-    inserirCliente
+    inserirCliente,
+    verificarUsuario
 }

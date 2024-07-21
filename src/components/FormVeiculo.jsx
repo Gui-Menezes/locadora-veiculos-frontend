@@ -56,11 +56,11 @@ export default function FormVeiculo() {
         <label htmlFor="preco">Preço:</label>
         <input type="number" name="preco" id="preco" value={preco} onChange={(evento) => setPreco(evento.target.value)}/>
         <br />
-        <label htmlFor="marca" onChange={(evento) => setMarcaId(evento.target.value)}>Marca:</label>
+        <label htmlFor="marca">Marca:</label>
         <select id="marca" name="select">
             <option value="">Selecione...</option>
             {listaMarcas.map((marca) => 
-                <option key={marca.id} value={marca.id}>{marca.nome}</option>
+                <option onChange={(evento) => setMarcaId(evento.target.value)} key={marca.id} value={marca.id}>{marca.nome}</option>
             )}
         </select>
         <br />
