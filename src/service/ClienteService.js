@@ -35,9 +35,30 @@ async function verificarUsuario(nome, cpf) {
     return response.data.data;
 }
 
+async function buscarUsuarioPorId(id) {
+    const response = await axios.get(`${BASE_URL_CLIENTE}/${id}`);
+    return response.data;
+}
+
+async function editarPerfil(id, perfilAtualizado) {
+    const data = {
+        data: {
+            perfilAtualizado
+        }
+    }
+    const response = await axios.put(`${BASE_URL_CLIENTE}/${id}`, data, {
+        headers: {
+            'Content-Type': 'application/json'
+        }}
+    );
+    return response.data;
+}
+
 
 export default {
     listarClientes,
     inserirCliente,
-    verificarUsuario
+    verificarUsuario,
+    buscarUsuarioPorId,
+    editarPerfil
 }

@@ -12,7 +12,6 @@ export default function minhasLocacoes() {
     const [dataDevolucao, setDataDevolucao] = useState();
     const navigate = useNavigate();
 
-
     useEffect(() => {
         locacaoService.listarLocacoesPeloIdCliente(id_cliente)
             .then((locacoes) => {

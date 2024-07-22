@@ -15,6 +15,10 @@ export default function Menu() {
     const locacoes = () => {
         navigate('/minhas-locacoes')
     }
+
+    const editarCadastro = () => {
+        navigate(`/edit/${id_cliente}`)
+    }
     
     return (
         <div className="w3-bar w3-black">
@@ -23,14 +27,14 @@ export default function Menu() {
                 <>
                     <Link to='/cadastro-marca' className="w3-bar-item w3-button">Cadastrar Veículo</Link>
                     <button onClick={locacoes} className="w3-bar-item w3-button">Minhas Locações</button>
-                    <span className="w3-bar-item w3-button">Bem-vindo! {nome_cliente}</span>
+                    <button className="w3-bar-item w3-button">Bem-vindo! {nome_cliente}</button>
                     <button onClick={handleLogout} className="w3-bar-item w3-button">Logout</button>
                 </>
             ) : (
                 id_cliente ? (
                     <>
                         <button onClick={locacoes} className="w3-bar-item w3-button">Minhas Locações</button>
-                        <span className="w3-bar-item w3-button">Bem-vindo! {nome_cliente}</span>
+                        <button onClick={editarCadastro} className="w3-bar-item w3-button">Bem-vindo! {nome_cliente}</button>
                         <button onClick={handleLogout} className="w3-bar-item w3-button">Logout</button>
                     </>
                 ) : (

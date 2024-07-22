@@ -18,7 +18,6 @@ export default function VeiculoCard({veiculo}) {
                     <h5>{veiculo.marca}</h5>
                     <h5>{veiculo.ano_fabricacao}</h5>
                     <h3 className="w3-black">{veiculo.preco.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</h3>
-                    {/* CRIAR PÁGINA PARA LOCAÇÃO DO VEÍCULO */}
                     <button onClick={locarVeiculo}>LOCAR</button>
                 </div>
             </div>

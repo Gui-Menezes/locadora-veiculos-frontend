@@ -8,6 +8,7 @@ import CadastroCliente from "./components/CadastroCliente";
 import Login from "./components/Login";
 import MinhasLocacoes from "./components/MinhasLocacoes";
 import LocacaoVeiculo from "./components/LocacaoVeiculo";
+import EditarPerfilUsuario from "./components/EditarPerfilUsuario";
 
 export default function Router() {
     return (
@@ -20,6 +21,7 @@ export default function Router() {
                 <Route path="/cadastro-cliente" element={<CadastroCliente />} />
                 <Route path="/minhas-locacoes" element={<MinhasLocacoes />} />
                 <Route path="/locacao-veiculo/:id" element={<LocacaoVeiculo />} />
+                <Route path="/edit/:id" element={<EditarPerfilUsuario />} />
                 <Route path="/login" element={<Login />} />
             </Route>
         </Routes>
