@@ -34,7 +34,9 @@ export default function minhasLocacoes() {
         const dataFormatada = data.toISOString().slice(0, 10);
         locacaoService.devolverVeiculo(id_locacao, dataFormatada)
             .then((locacao) => {
-                setListaLocacoes(locacao);
+                setTimeout(() => {
+                    navigate('/minhas-locacoes');
+                }, 1500);
             })
     }
 
