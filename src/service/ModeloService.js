@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL_MODELO = 'http://optimistic-fish-1880d60db2.strapiapp.com/api/modelos/';
+const BASE_URL_MODELO = 'https://optimistic-fish-1880d60db2.strapiapp.com/api/modelos/';
 
 async function listarModelos() {
     const response = await axios.get(BASE_URL_MODELO)
