@@ -19,7 +19,7 @@ export default function editarPerfilUsuario() {
     }, [id_cliente])
 
     const editarPerfil = (evento, id_cliente) => {
-        evento.preventoDefault();
+        evento.preventDefault();
 
         const perfilAtualizado = {
             data: {
