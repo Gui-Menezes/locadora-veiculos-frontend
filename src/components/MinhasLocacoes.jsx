@@ -12,8 +12,13 @@ export default function minhasLocacoes() {
     const [dataDevolucao, setDataDevolucao] = useState();
     const navigate = useNavigate();
 
-    const [, updateState] = useState();
-
+    useEffect(() => {
+        locacaoService.listarLocacoesPeloIdCliente(id_cliente)
+            .then((locacoes) => {
+                setListaLocacoes(locacoes)
+            }
+        )
+    }, []);
 
     const handleClickDevolver = (id_locacao) => {
         editarLocacao(null, id_locacao);
@@ -29,17 +34,16 @@ export default function minhasLocacoes() {
         const dataFormatada = data.toISOString().slice(0, 10);
         locacaoService.devolverVeiculo(id_locacao, dataFormatada)
             .then(() => {
-                updateState({});
+                    useEffect(() => {
+                        locacaoService.listarLocacoesPeloIdCliente(id_cliente)
+                            .then((locacoes) => {
+                                setListaLocacoes(locacoes)
+                            }
+                        )
+                    }, []);
             })
     }
-    
-    useEffect(() => {
-        locacaoService.listarLocacoesPeloIdCliente(id_cliente)
-            .then((locacoes) => {
-                setListaLocacoes(locacoes)
-            }
-        )
-    }, [updateState];
+
 
     const excluirLocacao = (evento, id_locacao) => {
         if(evento) evento.preventDefault();
