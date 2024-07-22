@@ -35,7 +35,7 @@ export default function minhasLocacoes() {
         locacaoService.devolverVeiculo(id_locacao, dataFormatada)
             .then((locacao) => {
                 setTimeout(() => {
-                    window.location.reload();
+                    window.location.reload(true);
                 }, 1500);
             })
     }
