@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL_MARCA = 'http://optimistic-fish-1880d60db2.strapiapp.com/api/marcas/';
+const BASE_URL_MARCA = 'https://optimistic-fish-1880d60db2.strapiapp.com/api/marcas/';
 
 
 async function listarMarcas() {
