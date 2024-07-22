@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL_CLIENTE = 'http://optimistic-fish-1880d60db2.strapiapp.com/api/clientes';
+const BASE_URL_CLIENTE = 'https://optimistic-fish-1880d60db2.strapiapp.com/api/clientes';
 
 async function listarClientes() {
     const response = await axios.get(BASE_URL_CLIENTE);
