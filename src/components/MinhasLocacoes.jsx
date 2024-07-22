@@ -9,7 +9,7 @@ export default function minhasLocacoes() {
     const [listaLocacoes, setListaLocacoes] = useState([]);
 
     const [dataAluguel, setDataAluguel] = useState();
-    const [dataDevolucao, setDataDevolucao] = useState();
+    const [update, setUpdate] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -33,14 +33,8 @@ export default function minhasLocacoes() {
         const data = new Date()
         const dataFormatada = data.toISOString().slice(0, 10);
         locacaoService.devolverVeiculo(id_locacao, dataFormatada)
-            .then(() => {
-                    useEffect(() => {
-                        locacaoService.listarLocacoesPeloIdCliente(id_cliente)
-                            .then((locacoes) => {
-                                setListaLocacoes(locacoes)
-                            }
-                        )
-                    }, []);
+            .then((locacao) => {
+                setUpdate(!update);
             })
     }
 
@@ -50,7 +44,7 @@ export default function minhasLocacoes() {
         confirm("Deseja excluir essa locação?");
         locacaoService.excluirLocacao(id_locacao)
             .then((locacao) => {
-                navigate('/minhas-locacoes');
+                setUpdate(!update);
             })
     }
 
