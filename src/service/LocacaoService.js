@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const BASE_URL_LOCACAO = 'http://optimistic-fish-1880d60db2.strapiapp.com/api/locacaos?populate[0]=veiculo.modelo';
-const BASE_URL_LOCACAO_ID = 'http://optimistic-fish-1880d60db2.strapiapp.com/api/locacaos';
+const BASE_URL_LOCACAO = 'https://optimistic-fish-1880d60db2.strapiapp.com/api/locacaos?populate[0]=veiculo.modelo';
+const BASE_URL_LOCACAO_ID = 'https://optimistic-fish-1880d60db2.strapiapp.com/api/locacaos';
 
 async function listarLocacoes() {
     const response = await axios.get(BASE_URL_LOCACAO);
