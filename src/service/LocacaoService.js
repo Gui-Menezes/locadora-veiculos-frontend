@@ -46,12 +46,26 @@ async function devolverVeiculo(id_locacao, data_devolucao) {
         'Content-Type': 'application/json'
     }}
 );
-
     return response.data;
+}
+
+async function inserirLocacao(locacao) {
+    const data = {
+        data: locacao
+    }
+    const response = await axios.post(BASE_URL_LOCACAO_ID, data);
+    return response.data
+}
+
+async function excluirLocacao(id) {
+    const response = await axios.delete(`${BASE_URL_LOCACAO_ID}/${id}`)
+    return response
 }
 
 export default {
     listarLocacoes,
     listarLocacoesPeloIdCliente,
-    devolverVeiculo
+    devolverVeiculo,
+    inserirLocacao,
+    excluirLocacao
 }

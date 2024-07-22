@@ -5,11 +5,9 @@ export default function VeiculoCard({veiculo}) {
     const navigate = useNavigate();
 
     const locarVeiculo = () => {
-        navigate('/cadastro');
+        navigate(`/locacao-veiculo/${veiculo.id}`);
     }
-    const editarProduto = () => {
-        navigate(`/edit/${produto.id}`);
-    }
+    
     return (
         <div className="w3-col l4 m6 s12 w3-container w3-padding-16">
             <div className="w3-card">

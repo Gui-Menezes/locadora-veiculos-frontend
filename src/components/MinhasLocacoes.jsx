@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import locacaoService from "../service/LocacaoService";
+import { useNavigate } from "react-router-dom";
 
 export default function minhasLocacoes() {
     const id_cliente = sessionStorage.getItem('id_cliente');
@@ -9,6 +10,8 @@ export default function minhasLocacoes() {
 
     const [dataAluguel, setDataAluguel] = useState();
     const [dataDevolucao, setDataDevolucao] = useState();
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         locacaoService.listarLocacoesPeloIdCliente(id_cliente)
@@ -18,15 +21,31 @@ export default function minhasLocacoes() {
         )
     }, []);
 
-    const editarLocacao = (evento) => {
-        evento.preventDefault();
+    const handleClickDevolver = (id_locacao) => {
+        editarLocacao(null, id_locacao);
+    }
+
+    const handleClickExcluir = (id_locacao) => {
+        excluirLocacao(null, id_locacao);
+    }
+
+    const editarLocacao = (evento, id_locacao) => {
+        if(evento) evento.preventDefault();
         const data = new Date()
-        
         const dataFormatada = data.toISOString().slice(0, 10);
-        listaLocacoes.map((locacao) => {
-            locacaoService.devolverVeiculo(locacao.id, dataFormatada);
-            window.location.reload();
-        })
+        locacaoService.devolverVeiculo(id_locacao, dataFormatada)
+            .then((locacao) => {
+                window.location.reload();
+            })
+    }
+
+    const excluirLocacao = (evento, id_locacao) => {
+        if(evento) evento.preventDefault();
+        confirm("Deseja excluir essa locação?");
+        locacaoService.excluirLocacao(id_locacao)
+            .then((locacao) => {
+                window.location.reload();
+            })
     }
 
     return (
@@ -44,7 +63,11 @@ export default function minhasLocacoes() {
                 <h4><strong>Data Devolução: </strong></h4>
                 <h5>{locacao.attributes.data_devolucao || "__/__/__"}</h5>
                 <h3 className="w3-black">{locacao.attributes.veiculo.data.attributes.preco.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</h3>
-                <button onClick={editarLocacao}>DEVOLVER</button>
+                {locacao.attributes.data_devolucao ? (
+                    <button onClick={() => handleClickExcluir(locacao.id)}>EXCLUIR</button>
+                ) : (
+                    <button onClick={() => handleClickDevolver(locacao.id)}>DEVOLVER</button>    
+                )}
             </div>
         </div>
         </div>
