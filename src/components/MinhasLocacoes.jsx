@@ -34,7 +34,7 @@ export default function minhasLocacoes() {
         const dataFormatada = data.toISOString().slice(0, 10);
         locacaoService.devolverVeiculo(id_locacao, dataFormatada)
             .then((locacao) => {
-                window.location.reload();
+                navigate('/minhas-locacoes');
             })
     }
 
@@ -43,7 +43,7 @@ export default function minhasLocacoes() {
         confirm("Deseja excluir essa locação?");
         locacaoService.excluirLocacao(id_locacao)
             .then((locacao) => {
-                window.location.reload();
+                navigate('/minhas-locacoes');
             })
     }
 
