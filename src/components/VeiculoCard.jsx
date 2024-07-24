@@ -1,11 +1,17 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 export default function VeiculoCard({veiculo}) {
     const navigate = useNavigate();
 
+    const id_cliente = sessionStorage.getItem("id_cliente");
+
     const locarVeiculo = () => {
         navigate(`/locacao-veiculo/${veiculo.id}`);
+    }
+
+    const login = () => {
+        navigate(`/login`);
     }
     
     return (
@@ -18,7 +24,11 @@ export default function VeiculoCard({veiculo}) {
                     <h5>{veiculo.marca}</h5>
                     <h5>{veiculo.ano_fabricacao}</h5>
                     <h3 className="w3-black">{veiculo.preco.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</h3>
-                    <button onClick={locarVeiculo}>LOCAR</button>
+                    {id_cliente ? (
+                        <button onClick={locarVeiculo}>LOCAR</button>
+                    ) : (
+                        <button onClick={login}>LOCAR</button>
+                    )}
                 </div>
             </div>
         </div>

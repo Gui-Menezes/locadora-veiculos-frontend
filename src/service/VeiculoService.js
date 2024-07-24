@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 const BASE_URL_POPULATE = 'https://optimistic-fish-1880d60db2.strapiapp.com/api/veiculos?populate[0]=modelo.marca&populate[1]=modelo';
+// const BASE_URL_POPULATE = 'http://localhost:1337/api/veiculos?populate[0]=modelo.marca&populate[1]=modelo';
 const BASE_URL_VEICULO = 'https://optimistic-fish-1880d60db2.strapiapp.com/api/veiculos/';
+// const BASE_URL_VEICULO = 'http://localhost:1337/api/veiculos/';
 
 async function listaVeiculos() {
     const response = await axios.get(BASE_URL_POPULATE);

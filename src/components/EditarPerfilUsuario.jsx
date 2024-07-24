@@ -18,21 +18,19 @@ export default function editarPerfilUsuario() {
             })
     }, [id_cliente])
 
-    const editarPerfil = (evento) => {
-        evento.preventDefault();
+    const editPerfil = (evento) => {
+        if(evento) evento.preventDefault();
 
         const perfilAtualizado = {
             data: {
-                attributes: {
-                    nome: nome,
-                    cpf: cpf
-
-                }
+                nome: nome,
+                cpf: cpf
             }
         }
 
         clienteService.editarPerfil(id_cliente, perfilAtualizado)
             .then((usuario) => {
+                console.log("ID: ", id_cliente);
                 navigate(`/edit/${id_cliente}`)
             })
     }
@@ -41,9 +39,8 @@ export default function editarPerfilUsuario() {
         navigate(-1);
     }
 
-
     return (
-        <form onSubmit= {editarPerfil}>
+        <form onSubmit= {editPerfil}>
             <h1>Perfil:</h1>
             <label htmlFor="nome">Nome:</label>
             <input type="text" id="nome" name="nome" value={nome} 

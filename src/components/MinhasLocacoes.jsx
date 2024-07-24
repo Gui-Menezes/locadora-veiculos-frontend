@@ -9,7 +9,6 @@ export default function minhasLocacoes() {
     const [listaLocacoes, setListaLocacoes] = useState([]);
 
     const [dataAluguel, setDataAluguel] = useState();
-    const [update, setUpdate] = useState(false);
     const navigate = useNavigate();
 
     const carregarLocacoes = () => {
@@ -24,14 +23,14 @@ export default function minhasLocacoes() {
     }, [id_cliente]);
 
     const handleClickDevolver = (id_locacao) => {
-        editarLocacao(null, id_locacao);
+        editarDevolucao(null, id_locacao);
     }
 
     const handleClickExcluir = (id_locacao) => {
         excluirLocacao(null, id_locacao);
     }
 
-    const editarLocacao = (evento, id_locacao) => {
+    const editarDevolucao = (evento, id_locacao) => {
         if(evento) evento.preventDefault();
         const data = new Date()
         const dataFormatada = data.toISOString().slice(0, 10);
@@ -40,7 +39,6 @@ export default function minhasLocacoes() {
                 carregarLocacoes();
             })
     }
-
 
     const excluirLocacao = (evento, id_locacao) => {
         if(evento) evento.preventDefault();
@@ -62,9 +60,10 @@ export default function minhasLocacoes() {
                 <img src="cobalt.jpg" style={{width: "100%"}}/>
                 <h1>{locacao.attributes.veiculo.data.attributes.modelo.data.attributes.nome}</h1>
                 <h4><strong>Data Aluguel: </strong></h4>
-                <h5>{locacao.attributes.data_aluguel}</h5>
+                <input type="date" name="data_aluguel" value={locacao.attributes.data_aluguel} onChange={(evento) => setDataAluguel(evento.target.value)} disabled />
+                {/* <h5>{locacao.attributes.data_aluguel}</h5> */}
                 <h4><strong>Data Devolução: </strong></h4>
-                <h5>{locacao.attributes.data_devolucao || "__/__/__"}</h5>
+                <input type="date" name="data_devolucao" value={locacao.attributes.data_devolucao} onChange={(evento) => setDataDevolucao(evento.target.value)} disabled />
                 <h3 className="w3-black">{locacao.attributes.veiculo.data.attributes.preco.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</h3>
                 {locacao.attributes.data_devolucao ? (
                     <button onClick={() => handleClickExcluir(locacao.id)}>EXCLUIR</button>

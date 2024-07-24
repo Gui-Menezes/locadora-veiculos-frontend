@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const BASE_URL_CLIENTE = 'https://optimistic-fish-1880d60db2.strapiapp.com/api/clientes';
+// const BASE_URL_CLIENTE = 'http://localhost:1337/api/clientes';
 
 async function listarClientes() {
     const response = await axios.get(BASE_URL_CLIENTE);
@@ -40,17 +41,17 @@ async function buscarUsuarioPorId(id) {
     return response.data;
 }
 
-async function editarPerfil(id, perfilAtualizado) {
+async function editarPerfil(id_cliente, perfilAtualizado) {
     const data = {
         data: {
             perfilAtualizado
         }
     }
-    const response = await axios.put(`${BASE_URL_CLIENTE}/${id}`, data, {
+    const response = await axios.put(`${BASE_URL_CLIENTE}/${id_cliente}`, data, {
         headers: {
             'Content-Type': 'application/json'
-        }}
-    );
+        }});
+
     return response.data;
 }
 
